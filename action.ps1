@@ -21,7 +21,6 @@ $formObject = @{
     department       = $form.department
     
     loginPermission  = $form.loginPermission
-    exchangeAccount  = $form.exchangeAccount
 }
 $userDisplayName = $formObject.surName + ", " + $formObject.firstName + " " + $formObject.prefixes
 
