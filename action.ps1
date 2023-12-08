@@ -23,7 +23,7 @@ $formObject = @{
     loginPermission  = $form.loginPermission
     exchangeAccount  = $form.exchangeAccount
 }
-$userDisplayName = $formObject.surName + ", " + $response.firstName + " " + $response.prefixes
+$userDisplayName = $formObject.surName + ", " + $formObject.firstName + " " + $formObject.prefixes
 
 try {
     Write-Information "Executing TOPdesk action: [CreateAccount] for: [$($userDisplayName)]"
