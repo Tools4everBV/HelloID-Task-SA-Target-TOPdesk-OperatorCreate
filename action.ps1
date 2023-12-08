@@ -26,7 +26,7 @@ $formObject = @{
 $userDisplayName = $formObject.surName + ", " + $formObject.firstName + " " + $formObject.prefixes
 
 try {
-    Write-Information "Executing TOPdesk action: [CreateAccount] for: [$($userDisplayName)]"
+    Write-Information "Executing TOPdesk action: [CreateOperatorAccount] for: [$($userDisplayName)]"
     Write-Verbose "Creating authorization headers"
     # Create authorization headers with TOPdesk API key
     $pair = "${topdeskApiUsername}:${topdeskApiSecret}"
@@ -54,12 +54,12 @@ try {
         System            = "TOPdesk"
         TargetIdentifier  = [String]$response.id
         TargetDisplayName = [String]$response.dynamicName
-        Message           = "TOPdesk action: [CreateAccount] for: [$($userDisplayName)] executed successfully"
+        Message           = "TOPdesk action: [CreateOperatorAccount] for: [$($userDisplayName)] executed successfully"
         IsError           = $false
     }
     Write-Information -Tags "Audit" -MessageData $auditLog
 
-    Write-Information "TOPdesk action: [CreateAccount] for: [$($userDisplayName)] executed successfully"
+    Write-Information "TOPdesk action: [CreateOperatorAccount] for: [$($userDisplayName)] executed successfully"
 }
 catch {
     $ex = $_
@@ -68,14 +68,14 @@ catch {
         System            = "TOPdesk"
         TargetIdentifier  = ""
         TargetDisplayName = [String]$userDisplayName
-        Message           = "Could not execute TOPdesk action: [CreateAccount] for: [$($userDisplayName)], error: $($ex.Exception.Message)"
+        Message           = "Could not execute TOPdesk action: [CreateOperatorAccount] for: [$($userDisplayName)], error: $($ex.Exception.Message)"
         IsError           = $true
     }
     if ($($ex.Exception.GetType().FullName -eq "Microsoft.PowerShell.Commands.HttpResponseException")) {
-        $auditLog.Message = "Could not execute TOPdesk action: [CreateAccount] for: [$($userDisplayName)]"
-        Write-Error "Could not execute TOPdesk action: [CreateAccount] for: [$($userDisplayName)], error: $($ex.ErrorDetails)"
+        $auditLog.Message = "Could not execute TOPdesk action: [CreateOperatorAccount] for: [$($userDisplayName)]"
+        Write-Error "Could not execute TOPdesk action: [CreateOperatorAccount] for: [$($userDisplayName)], error: $($ex.ErrorDetails)"
     }
     Write-Information -Tags "Audit" -MessageData $auditLog
-    Write-Error "Could not execute TOPdesk action: [CreateAccount] for: [$($userDisplayName)], error: $($ex.Exception.Message)"
+    Write-Error "Could not execute TOPdesk action: [CreateOperatorAccount] for: [$($userDisplayName)], error: $($ex.Exception.Message)"
 }
 ###########################################################
