@@ -23,7 +23,7 @@ $formObject = @{
     loginPermission  = $form.loginPermission
     exchangeAccount  = $form.exchangeAccount
 }
-$userDisplayName = $formObject.surName + ", " + $response.firstName + " " + $response.prefixes
+$userDisplayName = $formObject.surName + ", " + $formObject.firstName + " " + $formObject.prefixes
 
 try {
     Write-Information "Executing TOPdesk action: [CreateAccount] for: [$($userDisplayName)]"
@@ -38,7 +38,7 @@ try {
         "Accept"        = "application/json"
     }
 
-    Write-Verbose "Creating TOPdeskAccount for: [$($userDisplayName)]"
+    Write-Verbose "Creating TOPdesk Operator for: [$($userDisplayName)]"
     $splatCreateUserParams = @{
         Uri         = "$($topdeskBaseUrl)/tas/api/operators"
         Method      = "POST"
